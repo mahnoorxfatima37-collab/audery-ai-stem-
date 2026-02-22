@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ariana Grande Fan Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #fff;
+      background-image: url("https://i.pinimg.com/1200x/d5/de/0d/d5de0d35d1760a398a0b0604585cef0a.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Overlay to make text readable */
+    .overlay {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.18), rgba(0,0,0,0.85));
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+
+    .logo span {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #f7f7f7;
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: #f9c4ff;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(60,0,60,0.7));
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.6rem, 4vw, 3.4rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: #f9c4ff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text p {
+      line-height: 1.7;
+      font-size: 0.98rem;
+      max-width: 34rem;
+      color: #f3e9ff;
+    }
+
+    .hero-meta {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.85;
+    }
+
+    .hero-meta span {
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      padding-bottom: 0.25rem;
+    }
+
+    .hero-image {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.8);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+    }
+
+    .hero-tag {
+      position: absolute;
+      left: 1.2rem;
+      bottom: 1.2rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.35);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* GALLERY */
+    .section-title {
+      margin-top: 3.5rem;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: radial-gradient(circle at top, rgba(255,255,255,0.08), rgba(0,0,0,0.9));
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.9);
+      border-color: rgba(249,196,255,0.7);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-label {
+      position: absolute;
+      left: 0.9rem;
+      bottom: 0.9rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.7);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* BIO / TEXT BLOCK */
+    .bio {
+      margin-top: 3.5rem;
+      padding: 2rem 2rem 2.4rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(40,0,60,0.85));
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.85);
+      max-height: 420px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #f9c4ff rgba(0,0,0,0.4);
+    }
+
+    .bio::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .bio::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.4);
+    }
+
+    .bio::-webkit-scrollbar-thumb {
+      background: #f9c4ff;
+      border-radius: 999px;
+    }
+
+    .bio h3 {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .bio p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #f7eaff;
+      margin-bottom: 1rem;
+    }
+
+    .bio strong {
+      font-weight: 600;
+      color: #ffe3ff;
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 2.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.7;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 1.8rem 1.4rem;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <div class="nav">
+        <div class="logo">
+          <span>ARIANA GRANDE</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#hero">Home</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#bio">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="hero" class="hero">
+        <div class="hero-text">
+          <h2>Eternal sunshine era</h2>
+          <h1>Ariana Grande</h1>
+          <p>
+            Ariana Grande-Butera is one of the most successful and influential pop stars of her generation,
+            known for her four-octave range, whistle notes, and a sound that blends pop, R&amp;B, and dance.
+            From Nickelodeon to global arenas, she’s become a defining voice of modern pop culture.
+          </p>
+          <div class="hero-meta">
+            <span>Born · June 26, 1993</span>
+            <span>From · Boca Raton, Florida</span>
+            <span>Genre · Pop / R&amp;B</span>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <!-- You can swap this for any of the images you like -->
+          <img src="https://i.pinimg.com/736x/1b/8f/e9/1b8fe9d1af0e3ae336935c73ed813c4d.jpg" alt="Ariana Grande" />
+          <div class="hero-tag">Eternal Sunshine · 2024</div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <h3 id="gallery" class="section-title">Visual gallery</h3>
+      <section class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://i.pinimg.com/736x/1b/8f/e9/1b8fe9d1af0e3ae336935c73ed813c4d.jpg" alt="Ariana 1" />
+          <div class="gallery-label">Image 1</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.pinimg.com/736x/56/39/b1/5639b1ccbe3700630c0a075bc15f9fea.jpg" alt="Ariana 2" />
+          <div class="gallery-label">Image 2</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.pinimg.com/736x/18/24/9e/18249e4cbba9e5d4362d8bb90eebb82a.jpg" alt="Ariana 3" />
+          <div class="gallery-label">Image 3</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.pinimg.com/736x/e8/cc/79/e8cc799ba3f8ef1363cd1e92451028d4.jpg" alt="Ariana 4" />
+          <div class="gallery-label">Image 4</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.pinimg.com/736x/f5/4d/cc/f54dcc51bddc9bd0ab2922e153575e6d.jpg" alt="Ariana 5" />
+          <div class="gallery-label">Image 5</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.pinimg.com/736x/79/7b/97/797b97228c3e5bc9aee258fd08bd816e.jpg" alt="Ariana 6" />
+          <div class="gallery-label">Image 6</div>
+        </div>
+      </section>
+
+      <!-- BIO / SCRIPT -->
+      <h3 id="bio" class="section-title">About Ariana</h3>
+      <section class="bio">
+        <h3>Biography &amp; career</h3>
+        <p>
+          <strong>Ariana Grande (full name Ariana Grande-Butera)</strong> is one of the most successful and influential
+          pop stars of her generation. Born on June 26, 1993, in Boca Raton, Florida, she's currently 32 years old
+          (as of February 2026). She's renowned for her four-octave vocal range (including whistle notes), signature
+          high ponytail, and powerful blend of pop, R&amp;B, and dance music.
+        </p>
+        <p>
+          She first gained fame as an actress on Nickelodeon shows like <strong>Victorious</strong> (2010–2013) as Cat
+          Valentine and <strong>Sam &amp; Cat</strong> (2013–2014), but transitioned fully to music with her debut album
+          <strong>Yours Truly</strong> in 2013.
+        </p>
+        <p>
+          <strong>Music Career Highlights</strong><br />
+          Ariana has released seven studio albums (as of early 2026), with six reaching #1 on the Billboard 200.
+          She's sold over 90 million records worldwide, earned three Grammy Awards, and holds numerous chart records—
+          including many #1 hits on the Billboard Hot 100.
+        </p>
+        <p>
+          Her main studio albums include:<br />
+          <strong>Yours Truly</strong> (2013) — Debut with hits like "The Way"<br />
+          <strong>My Everything</strong> (2014) — Featuring "Problem," "Bang Bang," "Break Free"<br />
+          <strong>Dangerous Woman</strong> (2016) — Title track and "Into You," "Side to Side"<br />
+          <strong>Sweetener</strong> (2018) — "No Tears Left to Cry," "God is a Woman"<br />
+          <strong>Thank U, Next</strong> (2019) — Massive hits like the title track, "7 Rings," "Break Up with Your Girlfriend"<br />
+          <strong>Positions</strong> (2020) — "Positions," "34+35"<br />
+          <strong>Eternal Sunshine</strong> (2024) — Lead singles "yes, and?," "we can't be friends (wait for your love),"
+          "the boy is mine"; deluxe versions like <em>Brighter Days Ahead</em> followed in 2025.
+        </p>
+        <p>
+          She's also contributed to soundtracks, notably starring as Glinda in the 2024/2025 <strong>Wicked</strong> films
+          (with <em>Wicked: For Good</em> in late 2025), earning award nominations and performing songs like "Popular"
+          and "Defying Gravity."
+        </p>
+        <p>
+          As of February 2026, she has 98 entries on the Billboard Hot 100 (fourth-most for women) and ranks highly in
+          streaming (around 85 million monthly Spotify listeners).
+        </p>
+        <p>
+          <strong>Recent Updates (as of February 2026)</strong><br />
+          She's preparing for <strong>The Eternal Sunshine Tour</strong>, her first major tour in six years, kicking off
+          in June 2026 in North America (starting in Oakland, CA, with dates in LA, etc.) and including a London residency.
+          It's described as a more limited run, with some reports calling it a potential "last hurrah" for large-scale
+          touring as she focuses on acting and personal life.
+        </p>
+        <p>
